@@ -1,0 +1,30 @@
+class SplashScreenFragment : Fragment() {
+
+
+    private var _binding : FragmentSplashScreenBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        // Inflate the layout for this fragment
+        _binding = FragmentSplashScreenBinding.inflate(inflater,container,false)
+
+        Handler(Looper.myLooper()!!).postDelayed(
+            {
+                findNavController().navigate(R.id.action_splashScreenFragment_to_registerFragment,null,
+                    NavOptions.Builder()
+                        .setPopUpTo(R.id.splashScreenFragment,
+                            true).build()
+                )
+            },300
+        )
+
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+
+    }
+}
